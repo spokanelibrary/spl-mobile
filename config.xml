@@ -17,6 +17,6 @@
         Sean Girard 
     </author>
 
-    <access uri="http://spokanelibrary.org" subdomains="true" />
+    <access origin="*" />
 
 </widget>
