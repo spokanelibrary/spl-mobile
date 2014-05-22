@@ -7,9 +7,10 @@
 
     <preference name="phonegap-version" value="3.3.0" />
 
+    <gap:plugin name="com.phonegap.plugin.inappbrowser" />
     <preference name="stay-in-webview" value="false" />
 
-    <gap:plugin name="com.phonegap.plugin.statusbar" version="1.1.0" />
+    <gap:plugin name="com.phonegap.plugin.statusbar" />
     <preference name="StatusBarOverlaysWebView" value="false" />
 
     <name>SPL Mobile</name>
