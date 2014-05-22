@@ -5,9 +5,11 @@
         versionCode = "10" 
         version     = "1.0.0" >
 
-    <!-- versionCode is optional and Android only -->
+    <gap:plugin name="com.phonegap.plugin.statusbar" version="1.1.0" />
 
     <preference name="phonegap-version" value="3.3.0" />
+
+    <preference name="StatusBarOverlaysWebView" value="false" />
 
     <name>SPL Mobile</name>
 
