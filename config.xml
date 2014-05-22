@@ -10,8 +10,10 @@
     <gap:plugin name="org.apache.cordova.inappbrowser" version="0.1.0" />
     
 
+    <!--
     <gap:plugin name="com.phonegap.plugin.statusbar" />
     <preference name="StatusBarOverlaysWebView" value="false" />
+    -->
 
     <name>SPL Mobile</name>
 
