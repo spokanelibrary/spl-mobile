@@ -7,7 +7,7 @@
 
     <preference name="phonegap-version" value="3.3.0" />
 
-    <gap:plugin name="com.phonegap.plugin.inappbrowser" />
+    <gap:plugin name="org.li8.inappbrowser" />
     <preference name="stay-in-webview" value="false" />
 
     <gap:plugin name="com.phonegap.plugin.statusbar" />
