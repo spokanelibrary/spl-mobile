@@ -59,14 +59,46 @@
 
     <div class="container">
    
+      <div class="row">
+        <div class="col-sm-12">
+          <form class="form-inline" id="spl-login" method="post" action="http://dev.spokanelibrary.org/account/">
+            <div class="row">
+              
+              <div class="col-sm-6" style="margin-bottom:10px;">
+                
+                <div class="input-group">
+                  <span class="input-group-addon">
+                    <small class="glyphicon glyphicon-barcode text-muted"></small>
+                  </span>
+                  <input class="form-control" id="spl-login-barcode" name="spl-login[barcode]" placeholder="Library Card" type="text">
+                </div>
+              </div>
+              <div class="col-sm-6" style="margin-bottom:10px;">
+                
+                <div class="input-group">
+                  <span class="input-group-addon">
+                    <small class="glyphicon glyphicon-lock text-muted"></small>
+                  </span>
+                  <input class="form-control" id="spl-login-pin" name="spl-login[pin]" placeholder="PIN" type="password">
+                  <span class="input-group-btn">
+                    <button class="btn btn-inverse" type="submit"><small class="glyphicon glyphicon-user text-muted"></small> Login →</button>
+                  </span>
+                </div><!-- /input-group -->
+              </div>
+            </div>
+          </form>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+
       <div class="jumbotron">
-        <h1>Navbar example</h1>
-        <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
-        <p>To see the difference between static and fixed top navbars, just scroll.</p>
-        <p>
-          <a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">View navbar docs &raquo;</a>
-        </p>
+        <div id="spl-user"></div>
       </div>
+
+      <script id="spl-user-tmpl" type="text/x-handlebars-template">
+        {{with user}}
+        My account {{my}}
+        {{/with}}
+      </script>
 
       <script id="spl-account-profile-tmpl" type="text/x-handlebars-template">
         {{#if user.sessionToken}}
@@ -91,7 +123,7 @@
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
-    <script src="lib/boostrap/dist/js/bootstrap.min.js"></script>
+    <script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="assets/js/plugins.js"></script>
     <script src="assets/js/main.js"></script>
 

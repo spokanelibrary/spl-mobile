@@ -21,12 +21,32 @@ function iabClose(event) {
 
 // Cordova is ready
 function onDeviceReady() {
- 	/*
-	//localStorage.setItem('favoriteflavor','vanilla');
-
-	var taste = localStorage.getItem('favoriteflavor');
-
-	$('#flavor').val(taste);
-	*/    
-	alert('ready');
+ 	splApp.init();
 }
+
+// emulate device in browser
+window.onload = function () {
+if( !window.device )
+   onDeviceReady();
+}
+
+var splApp = {
+
+	init: function() {
+		$('body').on('submit', '#spl-login', function(e) {
+			e.preventDefault();
+
+			alert('ok');
+		});
+		
+		var data = {my:'data'};
+
+		$user = $('#spl-user');
+    tmpl = Handlebars.compile( $("#spl-user-tmpl").html() );
+    $user.html( tmpl({user:data}) );
+
+
+
+	}
+
+} // splApp()
