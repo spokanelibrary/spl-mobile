@@ -19,7 +19,7 @@
   
   <gap:plugin name="com.phonegap.plugin.statusbar" />
   <preference name="StatusBarOverlaysWebView" value="false" />
-  <preference name="ios-statusbarstyle" value="black-opaque" />
+  <preference name="ios-statusbarstyle" value="default" />
   
 
   <name>My Library</name>
