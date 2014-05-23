@@ -28,4 +28,5 @@ function onDeviceReady() {
 
 	$('#flavor').val(taste);
 	*/    
+	alert('ready');
 }
