@@ -16,9 +16,10 @@
   <preference name="phonegap-version" value="3.3.0" />
 
 
-     
+  
   <gap:plugin name="com.phonegap.plugin.statusbar" />
   <preference name="StatusBarOverlaysWebView" value="false" />
+  <preference name="ios-statusbarstyle" value="black-opaque" />
   
 
   <name>My Library</name>
