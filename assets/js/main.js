@@ -21,6 +21,13 @@ function iabClose(event) {
 
 // Cordova is ready
 function onDeviceReady() {
+	$.ajaxSetup({
+     type: 'POST'
+    ,dataType: 'json'
+    ,dataType: 'jsonp'
+    ,jsonp: 'callback'
+  });
+
  	splApp.init();
 }
 
@@ -33,10 +40,39 @@ if( !window.device )
 var splApp = {
 
 	init: function() {
+
+		var barcode = localStorage.getItem('barcode');
+		alert(barcode);
+
 		$('body').on('submit', '#spl-login', function(e) {
 			e.preventDefault();
 
-			alert('ok');
+			$form = $(this);
+			//form = $form.serialize();
+			var barcode = $('#spl-login-barcode').val();
+			var pin = $('#spl-login-pin').val();
+			var params = { barcode: barcode
+										,pin: pin };
+			
+
+			console.log(params);
+
+			$.ajax({ 
+        url: 'http://api.spokanelibrary.org/v2/hzws/borrower'
+        ,dataType: 'jsonp'
+        ,data: { params: params } 
+      })
+      .done(function(obj) {
+      	if ( obj.userID ) {
+      		localStorage.setItem('barcode',barcode);
+      		localStorage.setItem('pin',pin);
+      	}
+        console.log(obj);
+      })
+      .fail(function() { 
+      })
+      .always(function() {  
+      });
 		});
 		
 		var data = {my:'data'};
