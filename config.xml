@@ -31,6 +31,10 @@
         Sean Girard 
     </author>
 
+
+    <icon src="res/spl.png" />
+
+
     <access origin="*" />
 
 </widget>
