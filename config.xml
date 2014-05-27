@@ -6,8 +6,8 @@
       version     = "1.0.0" >
 
   <gap:platform name="ios" />
-  <!--
   <gap:platform name="android" />
+  <!--
   <gap:platform name="winphone" />
   -->
 
@@ -78,6 +78,18 @@
   <gap:splash src="res/ios/Default-Portrait@2x.png" gap:platform="ios" width="1536" height="2048" />
   <gap:splash src="res/ios/Default-Landscape@2x.png" gap:platform="ios" width="2048" height="1536" />
 
+
+  <icon src="res/android/ldpi.png" gap:platform="android" gap:density="ldpi" />
+  <icon src="res/android/mdpi.png" gap:platform="android" gap:density="mdpi" />
+  <icon src="res/android/hdpi.png" gap:platform="android" gap:density="hdpi" />
+  <icon src="res/android/xhdpi.png" gap:platform="android" gap:density="xhdpi" />
+  <icon src="res/android/xxhdpi.png" gap:platform="android" gap:density="xxhdpi" />
+
+  <gap:splash src="res/android/splash/ldpi.png" gap:platform="android" gap:density="ldpi" />
+  <gap:splash src="res/android/splash/mdpi.png" gap:platform="android" gap:density="mdpi" />
+  <gap:splash src="res/android/splash/hdpi.png" gap:platform="android" gap:density="hdpi" />
+  <gap:splash src="res/android/splash/xhdpi.png" gap:platform="android" gap:density="xhdpi" />
+  <gap:splash src="res/android/splash/xxhdpi.png" gap:platform="android" gap:density="xxhdpi" />
 
   <access origin="*" />
 
