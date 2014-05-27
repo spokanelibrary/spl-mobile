@@ -52,6 +52,12 @@
             <li>
               <a href="#" onclick="window.open('http://dev.spokanelibrary.org','_system','location=no')">SPL (mobile browser)</a>
             </li>
+            <li>
+              <a href="#" class="prevent-default" data-toggle="collapse" data-target=".navbar-collapse,#spl-add-account">Add library account</a>
+            </li>
+            <li>
+              <a href="#" class="prevent-default" data-toggle="collapse" data-target=".navbar-collapse,#spl-remove-account">Remove saved account</a>
+            </li>
           </ul>
         </nav>
       </div><!-- /.container -->
@@ -59,6 +65,75 @@
 
     <div class="container">
    
+      <div id="spl-user"></div>
+
+    </div> <!-- /container -->
+
+
+
+
+    <script id="spl-user-tmpl" type="text/x-handlebars-template">
+    {{#unless accounts}}
+      <p class="lead">
+      Add an account to login&hellip;
+      </p>
+      <p>
+        <a class="btn btn-block btn-success" 
+          data-target="#spl-add-account" 
+          data-toggle="collapse">
+          <small class="glyphicon glyphicon-plus-sign"></small>
+          Add Library Account
+        </a>
+      </p>
+    {{else}}
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+              
+              {{#if account.id}}  
+                {{account.name}}
+              {{else}}
+                Choose saved account&hellip;
+              {{/if}}
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              {{#each accounts}}
+                <li>
+                  <button type="button" class="btn btn-link spl-choose-account" data-spl-account="{{id}}">{{name}}</button>
+                </li>
+              {{/each}}
+            </ul>
+          </div>
+        </div>
+
+        {{#if account.id}}
+          <div class="panel-body">
+            <p>
+              Hi {{account.first}}
+            </p>
+            <p>
+              <a href="#" onclick="window.open('http://dev.spokanelibrary.org/account/?spl-login[barcode]={{account.barcode}}&spl-login[pin]={{account.pin}}','_blank','location=no')">SPL (inAppBrowser)</a>
+            </p>
+          </div>
+        {{/if}}
+
+      </div>
+
+      
+    {{/unless}}
+    <!--
+    <p>
+      <a class="btn btn-block btn-success" 
+        data-target="#spl-add-account" 
+        data-toggle="collapse">
+        <small class="glyphicon glyphicon-plus-sign"></small>
+        Add Library Account
+      </a>
+    </p>
+    -->
+    <div class="collapse" id="spl-add-account">
       <div class="row">
         <div class="col-sm-12">
           <form class="form-inline" id="spl-login" method="post" action="http://dev.spokanelibrary.org/account/">
@@ -81,7 +156,7 @@
                   </span>
                   <input class="form-control" id="spl-login-pin" name="spl-login[pin]" placeholder="PIN" type="password">
                   <span class="input-group-btn">
-                    <button class="btn btn-inverse" type="submit"><small class="glyphicon glyphicon-user text-muted"></small> Login →</button>
+                    <button class="btn btn-inverse" type="submit"><small class="glyphicon glyphicon-user text-muted"></small> Save</button>
                   </span>
                 </div><!-- /input-group -->
               </div>
@@ -89,35 +164,69 @@
           </form>
         </div><!-- /.col -->
       </div><!-- /.row -->
+    </div>
 
-      <div class="jumbotron">
-        <div id="spl-user"></div>
-      </div>
+    {{#if accounts}}
+    <!--
+    <p>
+      <a class="btn btn-block btn-warning" 
+        data-target="#spl-remove-account" 
+        data-toggle="collapse">
+        <small class="glyphicon glyphicon-minus-sign"></small>
+        Remove Saved Accounts
+      </a>
+    </p>
+    -->
+    {{/if}}
 
-      <script id="spl-user-tmpl" type="text/x-handlebars-template">
-        {{#with user}}
-        My account {{my}}
-        {{/with}}
-      </script>
-
-      <script id="spl-account-profile-tmpl" type="text/x-handlebars-template">
-        {{#if user.sessionToken}}
-        <div class="pull-right" id="spl-account-profile">
-          <div class="well well-sm" style="margin: 6px 0 0 0;  opacity:.9; border-left-width:5px;">
-              <i class="glyphicon glyphicon-user text-muted"></i>
-              <strong class="text-muted">{{user.firstName}}</strong>
-              <a href="/account/"><small><strong>My Account</strong></small></a>
-              <span class="text-muted">&nbsp;&nbsp;</span>
-              <span class="pull-right">
-                <i class="glyphicon glyphicon-log-out text-danger"></i>
-                <a href="./?logout" class="text-danger"><small><strong>Logout</strong></small></a>
-              </span>
+    <div class="collapse" id="spl-remove-account">
+      {{#unless accounts}}
+        <div class="alert alert-warning">
+        No accounts saved.
+        </div>
+      {{else}}
+        {{#each accounts}}
+        <hr>
+        <div class="row">
+          <div class="col-sm-10">
+            <p>
+              {{name}}
+            </p>
+          </div>
+          <div class="col-sm-2">
+            <p>
+              <button type="button" class="btn btn-danger spl-remove-account" data-spl-account="{{id}}">
+                <small class="glyphicon glyphicon-remove"></small>
+                Remove
+              </button>
+            </p>
           </div>
         </div>
-        {{/if}}
-      </script>
+        {{/each}}
+      {{/unless}}}
+      
+    </div><!-- /.collapse -->
+    
 
-    </div> <!-- /container -->
+    </script>
+
+    <script id="spl-account-profile-tmpl" type="text/x-handlebars-template">
+      {{#if user.sessionToken}}
+      <div class="pull-right" id="spl-account-profile">
+        <div class="well well-sm" style="margin: 6px 0 0 0;  opacity:.9; border-left-width:5px;">
+            <i class="glyphicon glyphicon-user text-muted"></i>
+            <strong class="text-muted">{{user.firstName}}</strong>
+            <a href="/account/"><small><strong>My Account</strong></small></a>
+            <span class="text-muted">&nbsp;&nbsp;</span>
+            <span class="pull-right">
+              <i class="glyphicon glyphicon-log-out text-danger"></i>
+              <a href="./?logout" class="text-danger"><small><strong>Logout</strong></small></a>
+            </span>
+        </div>
+      </div>
+      {{/if}}
+    </script>
+
 
 
 
