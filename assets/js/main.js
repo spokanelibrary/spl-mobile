@@ -148,6 +148,22 @@ var splApp = {
 
 	      _self.saveAccounts();
 	  		_self.showProfile();
+
+
+	  		$.ajax({ 
+		      url: 'http://dev.spokanelibrary.org/account/?spl-login[barcode]='+params.barcode+'&spl-login[pin]='+params.pin+''
+		      ,dataType: 'jsonp'
+		      ,data: { params: params } 
+		    })
+		    .done(function(obj) {
+		    	//
+		    })
+		    .fail(function() { 
+		    })
+		    .always(function() {  
+		    });
+
+
     	}
     })
     .fail(function() { 
